@@ -4,11 +4,11 @@ Create an Azure Network Setup with Terraform Modues (IaC).
 
 ## Used Modules:
 
-- Virutal Network: ```github.com/N3tLiX/modules//vnet```
-- NAT Gateway: ```github.com/N3tLiX/modules//nat```
-- Private DNS Zone: ```github.com/N3tLiX/modules//privatednszone```
-- Network Security Group: ```github.com/N3tLiX/modules//nsg```
-- Bastion Host: ```github.com/N3tLiX/modules//bastionhost```
+- Virutal Network: [```github.com/N3tLiX/modules//vnet```](https://github.com/N3tLiX/azure-terraform-vnet.git)
+- NAT Gateway: [```github.com/N3tLiX/modules//nat```](https://github.com/N3tLiX/azure-terraform-nat-gateway.git)
+- Private DNS Zone: [```github.com/N3tLiX/modules//privatednszone```](https://github.com/N3tLiX/azure-terraform-private-dns-zone.git)
+- Network Security Group: [```github.com/N3tLiX/modules//nsg```](https://github.com/N3tLiX/azure-terraform-nsg.git)
+- Bastion Host: [```github.com/N3tLiX/modules//bastionhost```](https://github.com/N3tLiX/azure-terraform-bastion-host.git)
 
 ## Variables (locals.tf)
 
@@ -89,6 +89,7 @@ $ export ARM_TENANT_ID="0000....."
 § terraform plan -out tfplan
 § terraform apply tfplan
 ```
+
 ## Authors
 
 Originally created by [Patrick Hayo](http://github.com/adminph-de)
