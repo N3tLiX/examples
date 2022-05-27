@@ -10,7 +10,7 @@ Create an Azure Network Setup with Terraform Modues (IaC).
 - Network Security Group: ```github.com/N3tLiX/modules//nsg```
 - Bastion Host: ```github.com/N3tLiX/modules//bastionhost```
 
-## Varialbes (locals.tf)
+## Variables (locals.tf)
 
 ```hcl
 locals {
@@ -76,6 +76,18 @@ locals {
     }
   ]
 }
+```
+
+## Deploy
+
+```sh
+$ export ARM_SUBSCRIPTION_ID="0000...."
+$ export ARM_CLIENT_ID="0000...."
+$ export ARM_CLIENT_SECRET="myClientSecret"
+$ export ARM_TENANT_ID="0000....."
+§ terraform init
+§ terraform plan -out tfplan
+§ terraform apply tfplan
 ```
 ## Authors
 
