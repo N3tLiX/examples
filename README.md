@@ -1,15 +1,7 @@
-# azure-terraform-[module_name]
+# [examples/network]
 
-Create a simple [module_full_name] in Azure
+Examples to create various Azure Network Setups with Terraform Modues (IaC).
 
-## Usage in Terraform 0.13
-```hcl
-module "example" {
-  source  = "github.com/N3tLiX/modules//[module_folder]"
-}
-```
-
-Find an example, and more documentation at https://github.com/n3tlix/examples
 ## Authors
 
 Originally created by [Patrick Hayo](http://github.com/adminph-de)

@@ -35,3 +35,7 @@ override.tf.json
 
 # Include MacOS specific files
 .DS_Store
+
+# Include configuration files
+backend.conf
+azure.sh
