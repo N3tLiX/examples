@@ -1,6 +1,7 @@
 # Get Data of the Azuer Subscription
 data "azurerm_client_config" "this" {}
 
+
 # Create Azure Resouce Group
 resource "azurerm_resource_group" "this" {
   name     = local.resource_group_name
@@ -11,6 +12,7 @@ resource "azurerm_resource_group" "this" {
 data "azurerm_resource_group" "this" {
   name = azurerm_resource_group.this.name
 }
+
 
 # Create Azure Virtual Network (VNET)
 module "network" {
@@ -63,7 +65,10 @@ module "nsg" {
   resource_group_name = data.azurerm_resource_group.this.name
   location            = data.azurerm_resource_group.this.location
   associate_subnet_id = module.network.subnet_ids[each.key]
-  rules = contains(module.network.subnet_names_services, "AzureBastionSubnet") ? [] : [
+  # Apply the default "Bastion Host" rules ( inbound allow on 3389/tcp, 22/tcp), 
+  # only if an "AzureBastionSubnet" is part of the Configuration.
+  # Otherwise skip the "Basion Host" default inbount rules.
+  rules = contains(module.network.subnet_names_services, "AzureBastionSubnet") ? [
     {
       name        = "AllowRemoteAzureBastionSubnetInbound"
       description = "Allow SSH and RDP from AzureBastionSubnet Inbound."
@@ -108,7 +113,7 @@ module "nsg" {
         application_security_group_ids = null
       }
     },
-  ]
+  ] : []
   depends_on = [
     module.network
   ]
@@ -122,7 +127,7 @@ module "bastion_host" {
   resource_group_name = data.azurerm_resource_group.this.name
   subnet_id           = module.network.subnet_ids["AzureBastionSubnet"]
   depends_on = [
-    module.rules_AzureBastionSubnet,
+    module.network,
   ]
 }
 
@@ -313,5 +318,6 @@ module "nsg_AzureBastionSubnet" {
   ]
   depends_on = [
     module.network,
+    module.bastion_host
   ]
 }
